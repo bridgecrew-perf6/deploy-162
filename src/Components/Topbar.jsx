@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import useNavigate from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,6 +53,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Topbar(props) {
+
+  let navigate = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -68,13 +72,13 @@ export default function Topbar(props) {
           </Search>
           {
             props.user ?
-            <Button varian="contained">{props.user.username}</Button>
+            <Button onClick={() => navigate('/admin')} variant="contained">{props.user.username}</Button>
             :
             <>
-              <Button style={{margin: "1%"}} variant="contained" href="/login">
+              <Button style={{margin: "1%"}} variant="contained" onClick={() => navigate('/login')}>
 <PersonOutlineIcon/>  Login
 </Button>
-<Button style={{margin: "1%"}} variant="contained" href="#contained-buttons">
+<Button style={{margin: "1%"}} variant="contained" onClick={() => navigate('/register')}>
 <PersonAddIcon />  Register
 </Button>
             </>
