@@ -64,15 +64,15 @@ const Items = () => {
   }, [])
 
   return (
-    <div style={{  padding:"5%" }}>
+    <div className='slides'>
      <Slider {...settings}>
         {/* card1  */}
         
         {magazines
            &&
           magazines.map(magazine => 
-            <div style={{backgroundColor: '#000'}} key={magazine._id} onClick={() => navigate(`/Magazines/${magazine._id}`)}
-            className="blog">
+            <div key={magazine._id}>
+              <div style={{background: `url(https://videos-backends.herokuapp.com/${magazine.file})`}} onClick={() => navigate(`/Magazines/${magazine._id}`)} className="blog">
                 <div className="title-box">
     <h3>
   
@@ -97,7 +97,8 @@ const Items = () => {
 </div>
 
 <div className="color-overlay"></div>
-</div>
+  </div>
+            </div>
           
             )
         }

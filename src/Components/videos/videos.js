@@ -7,11 +7,14 @@ import axios from 'axios';
 import {Grid} from '@mui/material';
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar';
- 
+import { useNavigate } from 'react-router-dom';
+
 function Vids() {
 
 
   const [videos, setvideos] = useState(null);
+
+  let navigate = useNavigate();
 
   const fetchVideos = async () => {
     const response = await axios.get('https://videos-backends.herokuapp.com/videos');
@@ -28,7 +31,7 @@ function Vids() {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
-      initialSlide: 0,
+      initialSlide: 2,
       responsive: [
         {
           breakpoint: 1024,
@@ -50,8 +53,8 @@ function Vids() {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToShow: 2,
+            slidesToScroll: 2
           }
         }
       ]
@@ -71,7 +74,7 @@ function Vids() {
           videos ? 
           videos.map(video => 
             <Grid item sm={12} md={6} lg={4}  >
-            <div>
+            <div key={video._id} onClick={() => navigate(`/Videos/${video._id}`)}>
               <Card video={video}/>
             </div>
             </Grid>

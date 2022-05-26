@@ -11,6 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import ClearIcon from '@mui/icons-material/Clear';
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar';
+import fileDownload from 'js-file-download'
 
 
 class Sc extends Component {
@@ -74,6 +75,14 @@ class Sc extends Component {
       })
   }
 
+  handleDownload = (file) => {
+    axios.get('https://videos-backends.herokuapp.com' + file, {
+      responseType: 'blob',
+    })
+    .then((res) => {
+      fileDownload(res.data, file)
+    })
+  }
 
 
   render() {
